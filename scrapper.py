@@ -4,31 +4,6 @@ import subprocess
 import json
 from datetime import datetime, timedelta
 
-
-def generate_submission_modal(submission_id, code):
-    modal_id = f"modal-{submission_id}"
-    modal_content = f"""
-        <div class="modal fade" id="{modal_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Submission {submission_id} Code</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <pre><code>{code}</code></pre>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    """
-    return modal_content
-
 # Set the headers and payload for the first API request
 headers = {
     'authority': 'leetcode.com',
@@ -251,8 +226,6 @@ with open("lc_problems.html", "w") as f:
 
                 # Extract and print the code
                 code = data_submission['data']['submissionDetails']['code']
-                # Generate the modal content for this submission
-                submission_modal = generate_submission_modal(submission_id, code)
 
                 modal_id = f"modal-{submission_id}"
 
